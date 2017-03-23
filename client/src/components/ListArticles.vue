@@ -29,7 +29,7 @@
           if (!response.data.user) {
             window.location = 'http://localhost:8080/#/login'
           } else {
-            self.author = response.data.userid._id
+            self.author = self.dataArticle.author = response.data.userdata[0]._id
           }
         })
       },
