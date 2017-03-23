@@ -8,8 +8,7 @@ require('../config/config.js')
 let articleSchema = new Schema ({
   title: String,
   content: String,
-  content: String,
-  author: String
+  author: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {
   timestamps: true
 })

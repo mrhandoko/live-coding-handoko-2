@@ -16,7 +16,11 @@ Article.getArticle = (req, res, next) => {
 }
 
 Article.createNewArticle = (req, res, next) => {
-  Model.create(req.body).then((data) => {
+  Model.create({
+    title : req.body.title,
+    content: req.body.content,
+    author: req.body.author
+  }).then((data) => {
     res.send(data)
   })
 }
