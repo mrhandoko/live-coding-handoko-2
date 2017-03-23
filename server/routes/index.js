@@ -18,6 +18,6 @@ router.delete('/article/:id', Article.removeArticle)
 
 router.post('/login', Auth.login)
 router.post('/register', Auth.register)
-router.post('/verify', Auth.verify)
+router.get('/verify/:token', Auth.verify)
 
 module.exports = router;

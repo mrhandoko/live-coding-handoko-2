@@ -17,10 +17,22 @@
   export default {
     data() {
       return {
-        articles: []
+        articles: [],
+        author: ''
       }
     },
     methods: {
+      getToken() {
+        let self = this
+        let token  = JSON.parse(localStorage.getItem("token"))
+        axios.get('http://localhost:3000/api/verify/' + token).then((response) => {
+          if (!response.data.user) {
+            window.location = 'http://localhost:8080/#/login'
+          } else {
+            self.author = response.data.userid._id
+          }
+        })
+      },
       getData() {
         var self = this
         axios.get('http://localhost:3000/api/articles').then((response) => {
@@ -37,6 +49,7 @@
       }
     },
     mounted() {
+      this.getToken(),
       this.getData()
     }
   }

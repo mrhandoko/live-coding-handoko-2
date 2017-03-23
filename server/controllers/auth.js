@@ -48,7 +48,7 @@ Auth.verify = (req, res, next) => {
 
   jwt.verify(token, secret, (err, decoded) => {
     if (decoded) {
-      Model.User.find({where:{username : decoded.username}}).then((data) => {
+      Model.find({username : decoded.username}).then((data) => {
         res.json({user: true, userdata: data})
       })
     }
