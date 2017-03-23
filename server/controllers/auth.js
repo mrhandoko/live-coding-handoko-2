@@ -8,7 +8,7 @@ const Auth = {}
 let secret = "kukukakakkakikukakukaku"
 
 Auth.register = (req, res, next) => {
-  let hashed = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex');
+  let hashed = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
 
   let dataUser = {
     fullname: req.body.fullname,
@@ -29,20 +29,21 @@ Auth.register = (req, res, next) => {
 }
 
 Auth.login = (req, res, next) => {
-  Model.findOne({where: {username: req.body.username}}).then((user) => {
-    if (!user) {
-      res.send({usernotfound: true})
-    }
-    if (user) {
-      if (hash.verify(req.body.password, user.password)) {
-        let token = jwt.sign({
-          username: user.username
-        }, secret, {})
-        res.send({token: token})
-      } else {
-        res.send({passworderror: true})
-      }
-    }
+  Model.find({where: {username: req.body.username}}).then((user) => {
+    res.send(user)
+    // if (!user) {
+    //   res.send({usernotfound: true})
+    // }
+    // if (user) {
+    //   if (user.password == crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')) {
+    //     let token = jwt.sign({
+    //       username: user.username
+    //     }, secret, {})
+    //     res.send({token: token})
+    //   } else {
+    //     res.send({passworderror: true})
+    //   }
+    // }
   }).catch((err) => {
     res.send({err: err})
   })
