@@ -11,7 +11,14 @@
 
 ### Database table
 
-Di live coding ini, ada dua table yang akan di `create`, yaitu tabel `User` & `Article`. Dan berikut dibawah adalah END-Point kedua tabel tersebut.
+Di live coding ini, ada dua table yang akan di `create`, yaitu tabel `User` & `Article`. Dan berikut dibawah adalah END-Point kedua tabel tersebut. Dan satu End-Point khusus untuk halaman Register & Login.
+
+##### END-POINT REGISTER & LOGIN
+REST | REQUEST | DESCRIPTION
+------------ | -------------
+LOGIN | POST |  Login to access pages
+REGISTER | POST | Register for the first time
+VERIFY | GET | Verify user
 
 ##### END-POINT USER
 
@@ -63,4 +70,4 @@ http://localhost:3000/api/article/mengapa-nasi-padang-itu-lezat
 * Adding validatin from clint-side (frontend)
 
 ##### Refactoring
-* Refactoring the codes
+* Refactoring the code
