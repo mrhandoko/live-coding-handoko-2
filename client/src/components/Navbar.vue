@@ -16,7 +16,7 @@
               <router-link to="Article">Create New Article</router-link>
             </li>
             <li>
-              <a href="http://news.bootswatch.com">Blog</a>
+              <router-link to="Register">Register</router-link>
             </li>
           </ul>
 
@@ -45,18 +45,18 @@
       getToken() {
         let self = this
         let token  = JSON.parse(localStorage.getItem("token"))
-        // axios.get('http://localhost:3000/api/verify/' + token).then((response) => {
-        //   if (!response.data.user) {
-        //     window.location = 'http://localhost:8080/#/'
-        //   } else {
-        //     if(token) {
-        //       self.login = 'Selamat Datang, ' + response.data.userdata.fullname
-        //     } else {
-        //       self.login = 'Login'
-        //     }
-        //     self.register = 'Logout'
-        //   }
-        // })
+        axios.get('http://localhost:3000/api/verify/' + token).then((response) => {
+          if (!response.data.user) {
+            window.location = 'http://localhost:8080/#/'
+          } else {
+            if(token) {
+              self.login = 'Selamat Datang, ' + response.data.userdata[0].fullname
+            } else {
+              self.login = 'Login'
+            }
+            self.register = 'Logout'
+          }
+        })
       },
       onLogout() {
         localStorage.clear();
