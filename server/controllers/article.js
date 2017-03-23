@@ -4,7 +4,7 @@ const Model = require('../models/articles')
 const Article = {}
 
 Article.getArticles = (req, res, next) => {
-  Model.find({}).populate('users').then((data) => {
+  Model.find({}).populate('author').then((data) => {
     res.send(data)
   })
 }
