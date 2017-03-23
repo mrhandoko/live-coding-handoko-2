@@ -44,7 +44,7 @@ export default {
         if (!response.data.user) {
           window.location = 'http://localhost:8080/#/login'
         } else {
-          self.dataArticle.userid = response.data.userdata.id
+          self.dataArticle.author = response.data.userdata[0]._id
         }
       })
     },
