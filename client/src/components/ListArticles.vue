@@ -5,6 +5,7 @@
       <div style="padding-bottom:20px; padding-top:20px;">{{ article.content }}</div>
       <div class= "author"> Author : {{ article.author.fullname }}</div>
       <div class= "createdat"> created at: {{ article.author.createdAt }}</div>
+      <button>Edit</button><button v-on:click="removeArticle(article._id)">Delete</button>
       <div class="clear-fix"></div>
     </div>
   </div>
@@ -25,6 +26,13 @@
         axios.get('http://localhost:3000/api/articles').then((response) => {
           console.log(response.data);
           self.articles = response.data;
+        })
+      },
+      removeArticle(id) {
+        var self = this
+        axios.delete('http://localhost:3000/api/article/' + id).then((response) => {
+          console.log(response.data);
+          self.getData()
         })
       }
     },

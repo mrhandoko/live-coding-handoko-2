@@ -29,21 +29,15 @@ Auth.register = (req, res, next) => {
 }
 
 Auth.login = (req, res, next) => {
-  Model.find({where: {username: req.body.username}}).then((user) => {
-    res.send(user)
-    // if (!user) {
-    //   res.send({usernotfound: true})
-    // }
-    // if (user) {
-    //   if (user.password == crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')) {
-    //     let token = jwt.sign({
-    //       username: user.username
-    //     }, secret, {})
-    //     res.send({token: token})
-    //   } else {
-    //     res.send({passworderror: true})
-    //   }
-    // }
+  Model.findOne({username: req.body.username}).then((data) => {
+      if (data.password == crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')) {
+        let token = jwt.sign({
+          username: data.username
+        }, secret, {})
+        res.send({token: token})
+      } else {
+        res.send({passworderror: true})
+      }
   }).catch((err) => {
     res.send({err: err})
   })

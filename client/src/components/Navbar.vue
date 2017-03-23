@@ -13,7 +13,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="../help/">Help</a>
+              <router-link to="Article">Create New Article</router-link>
             </li>
             <li>
               <a href="http://news.bootswatch.com">Blog</a>
