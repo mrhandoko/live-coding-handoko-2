@@ -17,7 +17,7 @@ router.put('/article/:id', Article.updateArticle)
 router.delete('/article/:id', Article.removeArticle)
 
 router.post('/login', Auth.login)
-router.post('/register', Auth.login)
-router.post('/verify', Auth.login)
+router.post('/register', Auth.register)
+router.post('/verify', Auth.verify)
 
 module.exports = router;

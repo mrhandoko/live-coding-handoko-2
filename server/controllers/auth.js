@@ -1,16 +1,35 @@
 'use strict'
 
 const Model = require('../models/users')
+const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 const Auth = {}
 
+let secret = "kukukakakkakikukakukaku"
+
 Auth.register = (req, res, next) => {
-  Model.create(req.body).then((data) => {
-    res.send(data)
+  let hashed = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex');
+
+  let dataUser = {
+    fullname: req.body.fullname,
+    username: req.body.username,
+    email: req.body.email,
+    password: hashed
+  }
+
+  Model.create(dataUser).then((user) => {
+    res.json({message: 'Register Success', data: user})
+  }).catch((err) => {
+    if (err) {
+      res.json({
+        err: err
+      })
+    }
   })
 }
 
 Auth.login = (req, res, next) => {
-  Model.User.findOne({where: {username: req.body.username}}).then((user) => {
+  Model.findOne({where: {username: req.body.username}}).then((user) => {
     if (!user) {
       res.send({usernotfound: true})
     }
