@@ -13,6 +13,6 @@ let articleSchema = new Schema ({
   timestamps: true
 })
 
-let User = mongoose.model('Article', articleSchema)
+let Article = mongoose.model('Article', articleSchema)
 
 module.exports = Article

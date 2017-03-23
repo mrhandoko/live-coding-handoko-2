@@ -1,6 +1,6 @@
 'use strict'
 
-const Model = require('../models/users')
+const Model = require('../models/articles')
 const Article = {}
 
 Article.getArticles = (req, res, next) => {
@@ -16,11 +16,7 @@ Article.getArticle = (req, res, next) => {
 }
 
 Article.createNewArticle = (req, res, next) => {
-  Model.create({
-    title : req.body.title,
-    content: req.body.content,
-    author: req.body.author
-  }).then((data) => {
+  Model.create(req.body).then((data) => {
     res.send(data)
   })
 }
