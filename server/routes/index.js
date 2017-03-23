@@ -1,9 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../controllers/user')
+var Article = require('../controllers/article')
+var Auth = require('../controllers/auth')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/users', User.getUsers)
+router.get('/user/:id', User.getUser)
+router.post('/user', User.createNewUser)
+router.put('/user/:id', User.updateUser)
+router.delete('/user/:id', User.removeUser)
+
+router.get('/articles', Article.getArticles)
+router.get('/article/:id', Article.getArticle)
+router.post('/article', Article.createNewArticle)
+router.put('/article/:id', Article.updateArticle)
+router.delete('/article/:id', Article.removeArticle)
+
+router.post('/login', Auth.login)
+router.post('/register', Auth.login)
+router.post('/verify', Auth.login)
 
 module.exports = router;

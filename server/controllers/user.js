@@ -1,5 +1,8 @@
 'use strict'
 
+const Model = require('../models/users')
+const User = {}
+
 User.getUsers = (req, res, next) => {
   Model.find({}).then((data) => {
     res.send(data)
